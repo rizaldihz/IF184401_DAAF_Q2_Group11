@@ -117,6 +117,35 @@ void ambil_path()
     printf("hasil %d baris %d kolom %d\n",hasil,x,y);
 }
 
+void play()
+{
+        for(int i=0;i<9;i++){
+        score = score_eval();
+        if(score!=0 || !masihbermain()) break;
+        if(!(i%2)){
+            printf("Giliran anda:\n");
+            debugc(papan);
+            int x,y;
+            printf("Baris Kolom: ");
+            scanf("%d %d",&x,&y);
+            x--;y--;
+            papan[x][y]=pemain;
+            printf("Giliran anda:\n");
+            debugc(papan);
+        }
+        else{
+            ambilpath();
+            printf("Giliran komputer:\n");
+            debugc(papan);
+        }
+    }
+    printf("Hasilnya adalah:\n");
+    debugc(papan);
+    if(score == 0) printf("SERI!\n");
+    else printf("Komputer menang!\n");
+
+}
+
 int main()
 {
     debugc(papan);
