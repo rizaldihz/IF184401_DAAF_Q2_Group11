@@ -1,6 +1,8 @@
 #include<bits/stdc++.h>
 #include<conio.h>
 #include<windows.h>
+#define MAX 1000
+#define MIN -1000
 #define debugc(p) for(int i=0;i<3;i++){for(int j=0;j<3;j++){printf("%c ",p[i][j]);}printf("\n");}
 #define debugi(p) for(int i=0;i<3;i++){for(int j=0;j<3;j++){printf("%d ",p[i][j]);}printf("\n");}
 using namespace std;
@@ -50,15 +52,11 @@ int min(int a,int b)
     return a<b ? a:b;
 }
 
-<<<<<<< HEAD
 int minimax(char pion)
 {
     int skor = score_eval();
     if(skor!=0){
         return skor;
-    }
-    if(!masihbermain()){
-        return 0;
     }
     int hasil;
     if(pion==ai){
@@ -67,8 +65,8 @@ int minimax(char pion)
             for(int j=0;j<3;j++){
                 if(papan[i][j]==kosong){
                     papan[i][j] = pion;
-                    // debug(papan);
-                    hasil = max(hasil,minimax(other(pion)));
+                    debugc(papan);
+                    hasil = max(hasil,minimax(pemain));
                     papan[i][j]=kosong;
                 }
             }
@@ -80,21 +78,21 @@ int minimax(char pion)
             for(int j=0;j<3;j++){
                 if(papan[i][j]==kosong){
                     papan[i][j] = pion;
-                    // debug(papan);
-                    hasil = min(hasil,minimax(other(pion)));
+                    debugc(papan);
+                    hasil = min(hasil,minimax(ai));
                     papan[i][j]=kosong;
                 }
             }
         }
     }
+    printf("%d\n",hasil);
     return hasil;
 }
 
-=======
->>>>>>> origin/master
 int main()
 {
     debugc(papan);
+    printf("minimax sekarang %d\n",minimax(ai));
     printf("playing %d score %d\n",masihbermain(),score_eval());
     return 0; 
 }
