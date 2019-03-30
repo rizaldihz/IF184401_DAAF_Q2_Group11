@@ -72,20 +72,37 @@ int minimax(char pion)
             if(papan[i][j]==kosong){
                 papan[i][j] = pion;
                 debugc(papan);
-                if(pion == ai)hasil = max(hasil,minimax(pemain));
-                else hasil = min(hasil,minimax(ai));
+                if(pion == ai)hasil = max(hasil,minimax(other(pion)));
+                else hasil = min(hasil,minimax(other(pion)));
                 papan[i][j]=kosong;
             }
         }
     }
-    printf("%d\n",hasil);
+    // printf("%d\n",hasil);
     return hasil;
+}
+
+void ambil_path()
+{
+    hasil = MAX;
+    for(int i=0;i<3;i++)
+    {
+        for(int j=0;j<3;j++)
+        {
+            if(papan[i][j]==kosong){
+                papan[i][j] = ai;
+                hasil = min(hasil,minimax(pemain));
+            }
+        }
+    }
+    printf("hasil %d\n",hasil);
 }
 
 int main()
 {
     debugc(papan);
     printf("minimax sekarang %d\n",minimax(ai));
+    ambil_path();
     printf("playing %d score %d\n",masihbermain(),score_eval());
     return 0; 
 }
