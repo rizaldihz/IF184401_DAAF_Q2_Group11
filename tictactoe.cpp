@@ -11,7 +11,7 @@ char papan[3][3] =
 { 
     { 'x', 'x', 'o' }, 
     { 'x', 'o', 'o' }, 
-    { 'x', 'o', '_' } 
+    { '_', 'o', '_' } 
 }; 
 
 char pemain='o',ai='x',kosong='_';
@@ -65,16 +65,29 @@ int minimax(char pion)
         return skor;
     }
     int hasil;
-    if(pion == ai) hasil = MIN;
-    else hasil = MAX;
-    for(int i=0;i<3;i++){
-        for(int j=0;j<3;j++){
-            if(papan[i][j]==kosong){
-                papan[i][j] = pion;
-                debugc(papan);
-                if(pion == ai)hasil = max(hasil,minimax(other(pion)));
-                else hasil = min(hasil,minimax(other(pion)));
-                papan[i][j]=kosong;
+    if(pion==ai){
+        hasil = MIN;
+        for(int i=0;i<3;i++){
+            for(int j=0;j<3;j++){
+                if(papan[i][j]==kosong){
+                    papan[i][j] = pion;
+                    // debug(papan);
+                    hasil = max(hasil,minimax(ai));
+                    papan[i][j]=kosong;
+                }
+            }
+        }
+    }
+    else{
+        hasil = MAX;
+        for(int i=0;i<3;i++){
+            for(int j=0;j<3;j++){
+                if(papan[i][j]==kosong){
+                    papan[i][j] = pion;
+                    // debug(papan);
+                    hasil = min(hasil,minimax(pemain));
+                    papan[i][j]=kosong;
+                }
             }
         }
     }
