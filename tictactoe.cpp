@@ -9,9 +9,9 @@ using namespace std;
 
 char papan[3][3] = 
 { 
-    { 'x', 'x', 'o' }, 
-    { 'x', 'o', 'o' }, 
-    { '_', 'o', '_' } 
+    { '_', '_', '_' }, 
+    { '_', '_', '_' }, 
+    { '_', '_', '_' } 
 }; 
 
 char pemain='o',ai='x',kosong='_';
@@ -64,6 +64,9 @@ int minimax(char pion)
     if(skor!=0){
         return skor;
     }
+    if(!masihbermain()){
+        return 0;
+    }
     int hasil;
     if(pion==ai){
         hasil = MIN;
@@ -114,7 +117,8 @@ void ambil_path()
             }
         }
     }
-    printf("hasil %d baris %d kolom %d\n",hasil,x,y);
+    papan[x][y] = ai;
+    return;
 }
 
 void play()
@@ -158,7 +162,8 @@ void play()
                 printf("Komputer sedang berfikir %d\n",k);
                 Sleep(1000);
             }
-            ambilpath();
+            ambil_path();
+            system("cls");
             printf("Giliran komputer:\n");
             debugc(papan);
             Sleep(500);
@@ -170,7 +175,6 @@ void play()
     if(score == 10) printf("Komputer menang!\n");
     if(score == -10) printf("Anda menang!\n");
     if(score == 0) printf("SERI!\n");
-    else printf("Komputer menang!\n");
 }
 
 int main()
