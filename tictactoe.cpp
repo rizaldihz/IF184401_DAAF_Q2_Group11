@@ -139,11 +139,11 @@ void play()
             printf("Baris Kolom: ");
             scanf("%d %d",&x,&y);
             x--;y--;
-            while(papan[x][y]!=kosong){
+            while(x>2 || y>2 || papan[x][y]!=kosong){
                 system("cls");
                 printf("Giliran anda:\n");
                 debugc(papan);
-                printf("Tempat tersebut telah diisi\n");
+                printf("Input tidak valid atau tempat telah diisi\n");
                 printf("Baris Kolom: ");
                 scanf("%d %d",&x,&y);
                 x--;y--;
