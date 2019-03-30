@@ -31,6 +31,12 @@ int score_eval()
     return 0;
 }
 
+char other(char pion)
+{
+    if(pion == pemain) return ai;
+    else return pemain;
+}
+
 bool masihbermain()
 {
     for(int i =0;i<3;i++)
@@ -59,29 +65,16 @@ int minimax(char pion)
         return skor;
     }
     int hasil;
-    if(pion==ai){
-        hasil = MIN;
-        for(int i=0;i<3;i++){
-            for(int j=0;j<3;j++){
-                if(papan[i][j]==kosong){
-                    papan[i][j] = pion;
-                    debugc(papan);
-                    hasil = max(hasil,minimax(pemain));
-                    papan[i][j]=kosong;
-                }
-            }
-        }
-    }
-    else{
-        hasil = MAX;
-        for(int i=0;i<3;i++){
-            for(int j=0;j<3;j++){
-                if(papan[i][j]==kosong){
-                    papan[i][j] = pion;
-                    debugc(papan);
-                    hasil = min(hasil,minimax(ai));
-                    papan[i][j]=kosong;
-                }
+    if(pion == ai) hasil = MIN;
+    else hasil = MAX;
+    for(int i=0;i<3;i++){
+        for(int j=0;j<3;j++){
+            if(papan[i][j]==kosong){
+                papan[i][j] = pion;
+                debugc(papan);
+                if(pion == ai)hasil = max(hasil,minimax(pemain));
+                else hasil = min(hasil,minimax(ai));
+                papan[i][j]=kosong;
             }
         }
     }
