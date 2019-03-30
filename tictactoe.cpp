@@ -8,8 +8,8 @@ using namespace std;
 char papan[3][3] = 
 { 
     { 'x', '_', '_' }, 
-    { '_', 'o', 'o' }, 
-    { '_', '_', '_' } 
+    { 'x', 'o', 'o' }, 
+    { '_', 'o', '_' } 
 }; 
 
 char pemain='o',ai='x',kosong='_';
@@ -29,8 +29,30 @@ int score_eval()
     return 0;
 }
 
+bool masihbermain()
+{
+    for(int i =0;i<3;i++)
+    {
+        for(int j=0;j<3;j++){
+            if(papan[i][j]==kosong) return true;
+        }
+    }
+    return false;
+}
+
+int max(int a,int b)
+{
+    return a>b ? a:b;
+}
+
+int min(int a,int b)
+{
+    return a<b ? a:b;
+}
+
 int main()
 {
-    printf("score %d\n",score_eval());
+    debugc(papan);
+    printf("playing %d score %d\n",masihbermain(),score_eval());
     return 0; 
 }
