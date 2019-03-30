@@ -153,6 +153,8 @@ void play()
             printf("Giliran anda:\n");
             debugc(papan);
             Sleep(500);
+            printf("Tekan sembarang tombol untuk lanjut");
+            getch();
         }
         else{
             for(int k=3;k>=1;k--){
@@ -167,6 +169,8 @@ void play()
             printf("Giliran komputer:\n");
             debugc(papan);
             Sleep(500);
+            printf("Tekan sembarang tombol untuk lanjut");
+            getch();
         }
     }
     system("cls");
