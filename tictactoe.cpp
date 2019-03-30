@@ -9,9 +9,9 @@ using namespace std;
 
 char papan[3][3] = 
 { 
-    { 'x', '_', '_' }, 
+    { 'x', 'x', 'o' }, 
     { 'x', 'o', 'o' }, 
-    { '_', 'o', '_' } 
+    { 'x', 'o', '_' } 
 }; 
 
 char pemain='o',ai='x',kosong='_';
@@ -84,18 +84,27 @@ int minimax(char pion)
 
 void ambil_path()
 {
-    hasil = MAX;
+    int hasil,sementara;
+    int x=-1,y=-1;
+    hasil = MIN;
     for(int i=0;i<3;i++)
     {
         for(int j=0;j<3;j++)
         {
             if(papan[i][j]==kosong){
                 papan[i][j] = ai;
-                hasil = min(hasil,minimax(pemain));
+                sementara = minimax(pemain);
+                if(sementara>hasil)
+                {
+                    hasil = sementara;
+                    x = i;
+                    y = j;
+                }
+                papan[i][j] = kosong;
             }
         }
     }
-    printf("hasil %d\n",hasil);
+    printf("hasil %d baris %d kolom %d\n",hasil,x,y);
 }
 
 int main()
@@ -103,6 +112,7 @@ int main()
     debugc(papan);
     printf("minimax sekarang %d\n",minimax(ai));
     ambil_path();
+    debugc(papan);
     printf("playing %d score %d\n",masihbermain(),score_eval());
     return 0; 
 }
