@@ -50,6 +50,7 @@ int min(int a,int b)
     return a<b ? a:b;
 }
 
+<<<<<<< HEAD
 int minimax(char pion)
 {
     int skor = score_eval();
@@ -89,6 +90,8 @@ int minimax(char pion)
     return hasil;
 }
 
+=======
+>>>>>>> origin/master
 int main()
 {
     debugc(papan);
