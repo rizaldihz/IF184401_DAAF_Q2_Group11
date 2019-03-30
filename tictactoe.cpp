@@ -71,8 +71,7 @@ int minimax(char pion)
             for(int j=0;j<3;j++){
                 if(papan[i][j]==kosong){
                     papan[i][j] = pion;
-                    // debug(papan);
-                    hasil = max(hasil,minimax(ai));
+                    hasil = max(hasil,minimax(other(pion)));
                     papan[i][j]=kosong;
                 }
             }
@@ -84,14 +83,12 @@ int minimax(char pion)
             for(int j=0;j<3;j++){
                 if(papan[i][j]==kosong){
                     papan[i][j] = pion;
-                    // debug(papan);
-                    hasil = min(hasil,minimax(pemain));
+                    hasil = min(hasil,minimax(other(pion)));
                     papan[i][j]=kosong;
                 }
             }
         }
     }
-    // printf("%d\n",hasil);
     return hasil;
 }
 
