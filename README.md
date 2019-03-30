@@ -12,4 +12,4 @@ By :
 3. The computer will always end it's turn after 3 seconds
 
 ## NOTE:
-Our report for the program is provided in this [.zip](IF184401_DAA(F)_Q2_05111740000024_Mohammad Rizaldi H.P._05111740000027_Safhira Maharani_05111740000054_Yasinta Yusniawati.zip) file included in this repository. You could also access the code [here](tictactoe.cpp).
+Our report for the program is provided in this <a href="IF184401_DAA(F)_Q2_05111740000024_Mohammad Rizaldi H.P._05111740000027_Safhira Maharani_05111740000054_Yasinta Yusniawati.zip">.zip</a> file included in this repository. You could also access the code [here](tictactoe.cpp).
