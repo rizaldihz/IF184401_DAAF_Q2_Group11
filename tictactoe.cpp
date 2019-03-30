@@ -119,9 +119,15 @@ void ambil_path()
 
 void play()
 {
-        for(int i=0;i<9;i++){
+    system("cls");
+    printf("Mari bermain tic tac toe:\nAnda: O, Computer: X\n");
+    printf("Tekan sembarang tombol untuk lanjut");
+    getch();
+    int score;
+    for(int i=0;i<9;i++){
+        system("cls");
         score = score_eval();
-        if(score!=0 || !masihbermain()) break;
+        if(score!=0) break;
         if(!(i%2)){
             printf("Giliran anda:\n");
             debugc(papan);
@@ -129,29 +135,46 @@ void play()
             printf("Baris Kolom: ");
             scanf("%d %d",&x,&y);
             x--;y--;
+            while(papan[x][y]!=kosong){
+                system("cls");
+                printf("Giliran anda:\n");
+                debugc(papan);
+                printf("Tempat tersebut telah diisi\n");
+                printf("Baris Kolom: ");
+                scanf("%d %d",&x,&y);
+                x--;y--;
+            }
             papan[x][y]=pemain;
+            system("cls");
             printf("Giliran anda:\n");
             debugc(papan);
+            Sleep(500);
         }
         else{
+            for(int k=3;k>=1;k--){
+                system("cls");
+                printf("Giliran komputer:\n");
+                debugc(papan);
+                printf("Komputer sedang berfikir %d\n",k);
+                Sleep(1000);
+            }
             ambilpath();
             printf("Giliran komputer:\n");
             debugc(papan);
+            Sleep(500);
         }
     }
+    system("cls");
     printf("Hasilnya adalah:\n");
     debugc(papan);
+    if(score == 10) printf("Komputer menang!\n");
+    if(score == -10) printf("Anda menang!\n");
     if(score == 0) printf("SERI!\n");
     else printf("Komputer menang!\n");
-
 }
 
 int main()
 {
-    debugc(papan);
-    printf("minimax sekarang %d\n",minimax(ai));
-    ambil_path();
-    debugc(papan);
-    printf("playing %d score %d\n",masihbermain(),score_eval());
+    play();  
     return 0; 
 }
